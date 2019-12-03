@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Slide;
 use Illuminate\Http\Request;
 use App\Product;
+use App\ProductType;
 
 class PageController extends Controller
 {
@@ -18,9 +19,13 @@ class PageController extends Controller
         return view('page.trangchu', compact('slide', 'new_product', 'sanpham_khuyenmai')); 
     }
 
-    public function getLoaiSp()
+    public function getLoaiSp($type)
     {
-    	return view('page.loai_sanpham');
+        $sp_theoloai = Product::where('id_type', $type)->get();
+        $sp_khac = Product::where('id_type', '<>', $type)->paginate(3);
+        $loai = ProductType::all();
+        $loai_sp = ProductType::where('id', $type)->first();
+    	return view('page.loai_sanpham', compact('sp_theoloai', 'sp_khac', 'loai', 'loai_sp'));
     }
 
     public function getChitiet()
