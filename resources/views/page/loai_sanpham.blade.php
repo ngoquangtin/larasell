@@ -46,7 +46,7 @@
                                         @endif
 
                                         <div class="single-item-header">
-                                            <a href="product.html"><img src="source/image/product/{{ $sp->image }}" alt="" height="250px"></a>
+                                            <a href="{{ route('chitietsanpham', $sp->id) }}"><img src="source/image/product/{{ $sp->image }}" alt="" height="250px"></a>
                                         </div>
                                         <div class="single-item-body">
                                             <p class="single-item-title">{{ $sp->name }}</p>
